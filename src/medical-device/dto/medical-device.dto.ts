@@ -1,5 +1,6 @@
 import {
   IsEnum,
+  IsJSON,
   IsNotEmpty,
   IsNumber,
   IsOptional,
@@ -27,6 +28,10 @@ export class CreateMedicalDeviceDataDto {
   @IsString()
   @IsOptional()
   stringValue?: string;
+
+  @IsJSON()
+  @IsOptional()
+  jsonData?: string;
 
   @IsString()
   @IsOptional()
@@ -57,6 +62,10 @@ export class UpdateMedicalDeviceDataDto {
   @IsString()
   @IsOptional()
   stringValue?: string;
+  
+  @IsJSON()
+  @IsOptional()
+  jsonData?: string;
 
   @IsString()
   @IsOptional()
