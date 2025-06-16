@@ -31,6 +31,8 @@ async function bootstrap() {
     }),
   );
 
+  const port = process.env.PORT || 3000;
+
   // Swagger documentation
   const config = new DocumentBuilder()
     .setTitle(process.env.API_TITLE || 'Medical Management API')
@@ -39,6 +41,12 @@ async function bootstrap() {
         'API for managing medical records and appointments',
     )
     .setVersion(process.env.API_VERSION || '1.0.0')
+    .setContact(
+      process.env.API_CONTACT_NAME || 'API Support',
+      process.env.API_CONTACT_URL || '',
+      process.env.API_CONTACT_EMAIL || 'support@example.com',
+    )
+    .addServer(process.env.API_BASE_URL || `http://localhost:${port}`)
     .addBearerAuth()
     .build();
 
@@ -50,8 +58,6 @@ async function bootstrap() {
       persistAuthorization: true,
     },
   });
-
-  const port = process.env.PORT || 3000;
   await app.listen(port);
 
   console.log(`🚀 Medical API is running on: http://localhost:${port}`);
